@@ -126,6 +126,8 @@ class ImageMinimizer:
                 if self.dryrun or self.verbose:
                     print("rm -rf %s" % d)
                 if not self.dryrun:
+                    if os.path.islink(d):
+                        os.remove(d)
                     os.rmdir(d)
 
     def remove_rpm(self):
